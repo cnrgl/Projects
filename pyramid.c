@@ -40,7 +40,7 @@ if(fil==NULL)
 		{
 			if(is_prime(mat[nrow-i+j+1]))//check destination member is prime or not
 				break;
-			if((mat[nrow+j]>mat[nrow+j+1])&&(!is_prime(mat[nrow+j])))//choosing one path
+			if(mat[nrow+j]>mat[nrow+j+1])//choosing one path
 				mat[nrow-i+j+1]+=mat[nrow+j];
 			else if(!is_prime(mat[nrow+j+1]))
 				mat[nrow-i+j+1]+=mat[nrow+j+1];

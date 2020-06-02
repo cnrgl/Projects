@@ -31,18 +31,23 @@ if(fil==NULL)
 			for(i=1;i<n;i++)
 				fscanf(fil,"%d",&mat[i+nrow]);
 	}
-	
-	
+	nrow=(++n)*(n-1)/2;
+	mat=(int*)realloc(mat,(nrow+n)*sizeof(int));
+		for(i=1;i<n;i++)
+			mat[i+nrow]=0;
+		
+				
 	for(i=n;i>1;i--)//search rows
 	{
 		nrow=i*(i-1)/2;
+		printf(" nrow=%d",i);
 		for(j=0;j<i-1;j++)
 		{
 			if(is_prime(mat[nrow-i+j+1]))//check destination member is prime or not
-				break;
+				continue;
 			if(mat[nrow+j]>mat[nrow+j+1])//choosing one path
 				mat[nrow-i+j+1]+=mat[nrow+j];
-			else if(!is_prime(mat[nrow+j+1]))
+			else 
 				mat[nrow-i+j+1]+=mat[nrow+j+1];
 		}
 	}
@@ -55,7 +60,7 @@ if(fil==NULL)
 	else
 	{
 		printf("path closed with primes\n");
-		return 0;
+		
 	}
 		
   printf("max sum is=%d",mat[0]);

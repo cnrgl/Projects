@@ -37,17 +37,17 @@ void mersenn(int s1,int s2)
        cout<<"none";
    }
 }
-int main() {
-
-long int input1;int input2=0;
-float mersenne;
-cin>>input1>>input2;
-if(input2==0){
-    mersenn(input1);
-}
-else{
-    mersenn(input1,input2);
-}
-
+int main(void) {
+    long int input1;
+    int input2=0;
+    float mersenne;
+    cin>>input1>>input2;
+    if(input2==0){
+        mersenn(input1);
+      }
+    else
+    {
+        mersenn(input1,input2);
+    }
     return 0;
 }

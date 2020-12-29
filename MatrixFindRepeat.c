@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-//find different members in a random matrix
+//rastgele bir matris içerisindeki farklı elemanların bulunması
 int main(void)
 {
 	int mat[4][4],i,j,n=0,A[16],flag=0;

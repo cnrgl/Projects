@@ -5,6 +5,7 @@
 	Date: 11.06.19 19:07
 	Description: prime genarator
 */
+// Program will create new text file for writing the genarated primes if there is no such a same named file
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

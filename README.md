@@ -5,4 +5,5 @@ Genel amaçlı ortaya karışık kod listesi :)
 encryption codes :
 
 *Ceaser chip --> most basic encryption algorithm (It is thought as have been invented by Ceaser)
+
 *Base64 encoder+decoder  --> for more information see RFC standarts or wikipedia :)

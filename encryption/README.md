@@ -1,1 +1,1 @@
-This file contains encryption methods.
+This file contains some encryption methods. 

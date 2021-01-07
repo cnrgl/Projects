@@ -21,7 +21,7 @@ int main(void)
 		{	
 			printf(" "); // space for unknown
 			i++;
-	    	continue;
+	    		continue;
 		}
 		keyword = rand()%26; // one-time key
 		enc = ((plain_text[i]-97+keyword)%26)+97;

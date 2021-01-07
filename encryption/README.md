@@ -4,6 +4,6 @@ This file contains some encryption methods.
 
 *Vigenere --> improved ceaser chiper
 
-*one-time pad --> uncrackable cipher method
+*one-time pad --> uncrackable chiper method
 
 *Base64 encoder+decoder  --> for more information see RFC standarts or wikipedia :)

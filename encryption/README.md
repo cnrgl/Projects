@@ -2,7 +2,7 @@ This file contains some encryption methods.
 
 *Ceaser chip --> most basic encryption algorithm (It is thought as have been invented by Ceaser)
 
-*Viginere --> improved ceaser chiper
+*Vigenere --> improved ceaser chiper
 
 *one-tap key --> uncrackable cipher method
 

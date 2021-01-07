@@ -7,7 +7,7 @@ int main(void)
 	char freq[26]={0}; //C99 -- reset to array or use memset(freq,0,26)
 
 	int i=0;
-	srand((unsigned)time(0));
+	srand((unsigned)time(0)); // pseudo random generator (time(0) is start time of program) 
 	printf("This encryption strategy genaretes a random key for every character\n");
 	printf("Give a text to encryption :\n");
 	gets(plain_text);	

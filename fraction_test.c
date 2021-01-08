@@ -17,7 +17,7 @@ int main(void)
 	
 	printf("test double = %lf\n",test.y);
 	
-	printf("test fraction existence %d",((test.y-test.x)>0));	// instead of test.x = (int)test.y can be usable also
+	printf("test fraction existence %d",((test.y-test.x)>0));	// instead of test.x = (int)test.y can be usable 
 	
 	return 0;
 }

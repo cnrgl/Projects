@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-	typedef union{
-		int x;
-		double y; // it is long float
-	}data;
+typedef union{
+	int x;
+	double y; // it is long float
+}data;
 	
 int main(void)
 {

@@ -11,10 +11,19 @@
 static uint64_t pown(int n,int p) // just for header usage
 {
 	if(p>0)
-		return pown(n,p-1)*n;
+	return pown(n,p-1)*n;
 	else
-		return 1;
+	return 1;
 }
+
+
+void swap(uint64_t *a, uint64_t *b)
+{
+		register uint64_t temp;
+		temp=*a;
+		*a=*b;
+		*b=temp;
+} 
 
 
 static __inline__ uint64_t fast_mod(uint64_t m, uint64_t e, uint64_t n) // for bigger number of mod -- force compiler to make inline
@@ -34,9 +43,12 @@ static __inline__ uint64_t fast_mod(uint64_t m, uint64_t e, uint64_t n) // for b
 }
 
 
-uint64_t gcd(uint64_t a, uint64_t b) // must a >= b
+uint64_t gcd(uint64_t a, uint64_t b) 
 {
 	uint32_t rem = a%b;
+	if(a<b) // must a >= b
+		swap(&a,&b);
+	
 	if(rem)
 		gcd(b,rem);
 	return b;	
@@ -58,13 +70,6 @@ uint32_t RPG(int randomness)
 }
 
 
-void swap(uint64_t *a, uint64_t *b)
-{
-		register uint64_t temp;
-		temp=*a;
-		*a=*b;
-		*b=temp;
-} 
  
  
 unsigned long int get_prime(unsigned int randn, const char* file_name) //This function gets random prime from ordered prime list prepeared in advanced

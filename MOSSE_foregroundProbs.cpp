@@ -1,12 +1,9 @@
-﻿#include <windows.h>
-#include <winbase.h>
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/tracking.hpp>
 #include <opencv2/core/ocl.hpp>
 #include <opencv2/gapi/core.hpp> // GPU API library
-
-#define DEBUG1
+#define DEBUG1 // show histogram for foreground hist. probs. 
 
 using namespace cv;
 using namespace std;
@@ -23,42 +20,10 @@ const int win_size_h = 640, win_size_w = 640; // fixed win size
 void foregroundHistProb(Mat in, Mat &hist, Mat& histProb, int val = 3); // foreground prob. function for object color prob. map 
 Rect Rescale(Rect2d bbox, Point center, float scw, float sch); // box rescale function with respect to the center
 
-HANDLE hPort;
-bool writeByte(char *data);
-BOOL WriteABuffer(char* lpBuf, DWORD dwToWrite);
-
-
 int main(int argc, char** argv)
 {
 	CommandLineParser parser(argc, argv, "{ @image | <none> | path to image file }");
 	string filename = parser.get<string>("@image");
-
-	DCB dcb = { 0 };
-	hPort=CreateFile(L"COM3",
-		GENERIC_READ | GENERIC_WRITE,
-		0,
-		0,
-		OPEN_EXISTING,
-		FILE_FLAG_OVERLAPPED,
-		0);
-	if (hPort == INVALID_HANDLE_VALUE);
-	::GetCommState(hPort, &dcb);
-	dcb.BaudRate = 9600;
-	dcb.ByteSize = 8;
-	dcb.Parity = NOPARITY;
-	dcb.StopBits = ONESTOPBIT;
-	SetCommState(hPort, &dcb);
-
-
-
-	COMMTIMEOUTS timeout = { 0 };
-	timeout.ReadIntervalTimeout = 50;
-	timeout.ReadTotalTimeoutConstant = 50;
-	timeout.ReadTotalTimeoutMultiplier = 50;
-	timeout.WriteTotalTimeoutConstant = 50;
-	timeout.WriteTotalTimeoutMultiplier = 10;
-	SetCommTimeouts(hPort, &timeout);
-
 	Ptr<Tracker>tracker = TrackerMOSSE::create();//Tracker declaration
 
 	VideoCapture video;
@@ -153,11 +118,7 @@ int main(int argc, char** argv)
 
 			float fps = getTickFrequency() / ((double)getTickCount() - timer);
 			cout << "values(width-height) =  " << baseWidth << ":" << baseHeight << " scale(w-h) = " << width_exp / baseWidth << "..." << height_exp / baseHeight << "..." << endl;
-			//writeByte((char*)"test");
-			if (WriteABuffer((char*)"test", NULL))
-				cout << "ok" << endl;
-			else
-				cout << "error" << endl;
+			
 			if (ok)
 			{
 				rectangle(frame, bbox_exp, Scalar(255, 0, 0), 2, 1);
@@ -186,15 +147,6 @@ int main(int argc, char** argv)
 		
 	}
 }
-/*void momentVector(Mat probHist)
-{
-	vector<uchar> cord = {0,0,0,0};
-	for (auto vec:cord)
-		//for ()
-		{
-
-		}
-}*/
 Rect Rescale(Rect2d bbox, Point center, float scw, float sch)
 {
 	float w, h;
@@ -244,76 +196,4 @@ void foregroundHistProb(Mat in, Mat &hist, Mat& probHist, int val) // gives most
 	calcBackProject(&in, 1, channels, fore_hist, out, ranges); // backproject from histogram according to input image
 	threshold(out, probHist, 1, 255, THRESH_BINARY); // BINARY quantization to probs so values takes only 1 or 0 - this case we want to take all pixel same weighted
 	imshow("prob Demo", probHist);
-}
-BOOL WriteABuffer(char* lpBuf, DWORD dwToWrite)
-{
-	OVERLAPPED osWrite = { 0 };
-	DWORD dwWritten;
-	BOOL fRes;
-
-	// Create this writes OVERLAPPED structure hEvent.
-	osWrite.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-	if (osWrite.hEvent == NULL)
-		// Error creating overlapped event handle.
-		return FALSE;
-
-	// Issue write.
-	if (!WriteFile(hPort, lpBuf, dwToWrite, &dwWritten, &osWrite)) {
-		if (GetLastError() != ERROR_IO_PENDING) {
-			// WriteFile failed, but it isn't delayed. Report error and abort.
-			fRes = FALSE;
-		}
-		else {
-			// Write is pending.
-			if (!GetOverlappedResult(hPort, &osWrite, &dwWritten, TRUE))
-				fRes = FALSE;
-			else
-				// Write operation completed successfully.
-				fRes = TRUE;
-		}
-	}
-	else
-		// WriteFile completed immediately.
-		fRes = TRUE;
-
-	CloseHandle(osWrite.hEvent);
-	return fRes;
-}
-bool writeByte(char *data)
-{
-	hPort=CreateFile(L"COM3", GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-	//cout << GetLastError() << endl;
-	DCB dcb = { 0 };
-	BYTE Byte;
-	DWORD byteswritten, dwBytesTransferred;
-	dcb.DCBlength = sizeof(DCB);
-
-	::GetCommState(hPort, &dcb);
-	dcb.BaudRate = 9600;
-	dcb.ByteSize = 8;
-	dcb.Parity = NOPARITY;
-	dcb.StopBits = ONESTOPBIT;
-	SetCommState(hPort, &dcb);
-
-
-	
-	COMMTIMEOUTS timeout = { 0 };
-	timeout.ReadIntervalTimeout = 50;
-	timeout.ReadTotalTimeoutConstant = 50;
-	timeout.ReadTotalTimeoutMultiplier = 50;
-	timeout.WriteTotalTimeoutConstant = 50;
-	timeout.WriteTotalTimeoutMultiplier = 10;
-	SetCommTimeouts(hPort, &timeout);
-	
-	/*uintptr_t u_adress;
-	std::stringstream ss;
-	ss << std::hex << data;
-	ss >> u_adress;
-	LPCVOID address = (LPCVOID)u_adress;*/
-	//bool retVal = WriteFile(hPort, address, 1, &byteswritten, NULL);
-	bool retVal = WriteABuffer(data,NULL);
-	ReadFile(hPort, &Byte, 2, &dwBytesTransferred, 0);
-	cout << "scanned data:"<<Byte<<"--"<<retVal<<endl;
-	CloseHandle(hPort);
-	return retVal;
 }

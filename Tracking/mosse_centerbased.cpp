@@ -179,12 +179,6 @@ Rect Rescale(Rect2d bbox, Point center, float sc)
 
 	return Rect(center.x - w / 2, center.y - h / 2, w, h);
 }
-void op1(Mat in, Mat out, int opt_type)
-{
-	//Mat eleme
-
-
-}
 static void onSelect(int event, int x, int y, int, void*)
 {
 	if (event == EVENT_LBUTTONDBLCLK)

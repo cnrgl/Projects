@@ -6,4 +6,8 @@ This file contains some encryption methods.
 
 *one-time pad --> uncrackable chiper method
 
-*Base64 encoder+decoder  --> for more information see RFC standarts or wikipedia :)
+*RSA -->Rivest–Shamir–Adleman public key methode
+
+*Base64 encoder+decoder  --> for more information see RFC or wikipedia
+
+primes file located in codes/ path

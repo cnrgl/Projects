@@ -59,7 +59,7 @@ int fi = 70;
 int teta = 70;
 char deg[2];
 
- #ifdef __GNUC__ // printf fonsiyonu üzerinden çikti alinabilmesi için
+ #ifdef __GNUC__ // printf fonsiyonu Ã¼zerinden Ã§ikti alinabilmesi iÃ§in
 		#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 	#else
 		#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)

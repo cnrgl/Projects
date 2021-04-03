@@ -113,8 +113,8 @@ int main(void)
 	{
 		if(freq[i]>0)
 		{
-			root=(struct treeNode*)(newLeaf((char)i,freq[i], &null, &null)); // func(&function) is not acceptable
-			//printf("f=%d\n",freq[i]);
+			root=(struct treeNode*)(newLeaf((char)i,freq[i], &null, &null)); 
+			//printf("f=%d\n",freq[i]); // debug for see frequencies
 			pushHeap(&heap,&root); // still every leaf is also root
 		}
 	}

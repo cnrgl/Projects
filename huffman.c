@@ -118,7 +118,7 @@ int main(void)
 			pushHeap(&heap,&root); // still every leaf is also root
 		}
 	}
-	root=combine(&heap); // tree constracted
+	root=combine(&heap); // tree constructed
 	i=-1;
 	printf("\ncypher= ");
 	while(str[++i]!='\0')

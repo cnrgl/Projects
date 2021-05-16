@@ -5,13 +5,19 @@
 
 int main() {
 
-int in,i=0,b1,b2;
+int in,i=0,b1,b2,b3=0;
 scanf("%d",&in);
 
 while((i<5)&&(in>1)){
     b1=in%10;
     b2=(in-b1)/10;
-    in=b1*b1+b2*b2;
+    if(b2>9)
+    {
+        b3=b2/10;
+        b2=b2%10;
+    }
+    in=b1*b1+b2*b2+b3*b3;
+    b3=0;
     i++;
     printf("%d",in);
 }

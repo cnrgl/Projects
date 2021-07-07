@@ -1,4 +1,4 @@
-This file contains some encryption methods. 
+This file contains some of the popular encryption methods. 
 
 *Ceaser chip --> most basic encryption algorithm (It is thought as have been invented by Ceaser)
 

@@ -64,7 +64,7 @@ uint64_t lcm(uint64_t a, uint64_t b)
 uint32_t RPG(int randomness)
 {
 	
-	
+	////// Still in development ///////
 	
 	
 }

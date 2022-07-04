@@ -1,3 +1,3 @@
-E__ --> eksik veya yarım bırakılmış
+E__ --> missing or incomplete code
 
 

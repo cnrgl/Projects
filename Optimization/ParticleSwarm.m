@@ -1,3 +1,4 @@
+Octave code !!!!
 clear;
 %%%%%%%%% particle swarm optimization / n dimension space %%%%%%%%%%%%%%
 F = @(x) (x(1,:).^2+x(2,:).^2);  % non-given function definition or the unknown system equation 

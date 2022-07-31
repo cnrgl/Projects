@@ -1,19 +1,19 @@
-% This is Octave code !!!!
 clear;
 %%%%%%%%% particle swarm optimization / n dimension space %%%%%%%%%%%%%%
 F = @(x) (x(1,:).^2+x(2,:).^2);  % non-given function definition or the unknown system equation 
+%F = @(x) (x(1,:).^2+x(2,:).^2+4*x(1,:).*x(2,:));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 nD = 2; %space dimension 
 ULx = [-10, 10; % Dim limits
         -10, 10];
 S = 5; %Space number of one dim / uniform distribution
-w=0.5; % avearaging weight
+w = 0.5; % avearaging weight
 phiP = 0.3; % inertial best cognitive coefficient
 phiG = 0.3; % total goal cognitive coefficient
-conf = 0.3; % termination confidence
+conf = 0.1; % termination confidence
 
 P=[]; % particle positions
-V=[]; % particle velocities
+V=[]; % partic velocities
 
 for i=1:nD
   toS = (ULx(i,2)-ULx(i,1))/(S+1); %space precision
@@ -33,7 +33,7 @@ endfor
 
 S*=S; % hereafter total number will be used
 BP = P; %initialization best known position 
-[valG G] = max(F(P),[],2);
+[valG G] = max(abs(F(P)),[],2);
 
 loss = 1;
 while (loss > conf)
@@ -46,9 +46,8 @@ while (loss > conf)
     endfor
     P(:,i) = P(:,i)+V(:,i);
     
-    solBP = F(BP(:,i));
-    solP = F(P(:,i));
-    soll(1,i) = solP;
+    solBP = abs(F(BP(:,i)));
+    solP = abs(F(P(:,i)));
     loss = loss + solBP;  
     if (solP<solBP)
       BP(:,i) = P(:,i);
@@ -61,9 +60,15 @@ while (loss > conf)
   loss = tanh(loss/S)
   
   quiver(P(1,:),P(2,:),V(1,:),V(2,:));
-  xlim([-10,10]);
-  ylim([-10,10]);
+  %xlim([-10,10]);
+  %ylim([-10,10]);
  
   %b = waitforbuttonpress ();
   pause(0.1);
 endwhile
+
+figure,
+scatter(P(1,:),P(2,:));
+title("result");
+xlabel("X");
+ylabel("Y");

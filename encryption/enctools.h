@@ -1,5 +1,5 @@
-#ifndef modular_h 
-#define modular_h
+#ifndef enctools_h
+#define enctools_h
 
 #ifndef stdio_h 
 #include <stdio.h>

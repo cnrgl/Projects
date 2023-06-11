@@ -10,4 +10,4 @@ This file contains some of the popular encryption methods.
 
 *Base64 encoder+decoder  --> for more information see RFC or wikipedia
 
-primes file located in codes/ path
+primes file located in Projects/ path

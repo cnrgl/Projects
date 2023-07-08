@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "görev-ADFGVX",
+      "appliesTo": "encryption/ADFGVX.c",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "görev-ADFGVX",
+      "appliesTo": "encryption/ADFGVX.c",
+      "type": "launch"
+    }
+  ]
+}

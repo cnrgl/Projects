@@ -2,7 +2,7 @@ function [Einc] = readEFE(filename, nx, ny, nz)
 % This function handle the reading data operation from FEKO EFE(Electromagnetic Field Export)
 % files. Comments are ignored considering it's begin with '#' character and
 % ** line also skipped internally please do not delete !!!
-
+% Author : A.Caner Gül Date: 12.07.2023
 % E-Field sizes could be parsed from comment in the file but that would be quite unnecessary
 
 fil = fopen(filename);

@@ -10,7 +10,7 @@ def check_website(url, filter_key, target_strings, target_imp_strings, unwanted_
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
     flag = False
-
+    start_time = time.time()
     while True:
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
@@ -47,7 +47,9 @@ def check_website(url, filter_key, target_strings, target_imp_strings, unwanted_
         if flag:
             break
         time.sleep(6)
-        print("waiting... \n")
+        elapsed_time = time.time() - start_time
+        print(f"waiting... Elapsed:" + "{:.0f}".format(elapsed_time) + " second \n")
+
 
 
 if __name__ == "__main__":

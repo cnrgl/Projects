@@ -47,7 +47,7 @@ def check_website(url, filter_key, target_strings, target_imp_strings, unwanted_
         if flag:
             break
         time.sleep(6)
-        elapsed_time = time.time() - start_time
+        elapsed_time = time.time() - start_time #wait if an approaching announcement is expected soon
         print(f"waiting... Elapsed:" + "{:.0f}".format(elapsed_time) + " second \n")
 
 
@@ -56,5 +56,6 @@ if __name__ == "__main__":
     target_strings = ['Araştırma', 'Görevlisi', 'Öğretim']
     target_imp_strings = []
     unwanted_strings = ['Düzeltme', 'Ön', 'Alım']
-    check_website("https://www.itu.edu.tr/duyurular", "h6",
-                  target_strings, target_imp_strings, unwanted_strings, "2024:02:01")
+    check_website("https://www.itu.edu.tr/duyurular", "h6", # search h6 tag in the link with target string constraints
+                  target_strings, target_imp_strings, unwanted_strings, "2024:01:01") # Date has to be updated to the starting date
+                    # target_imp_strings --> if need an impulsory strings

@@ -9,7 +9,7 @@ fil = fopen(filename);
 if fil < 0
     error("invalid file !!!");
 end
-Einc = zeros(nx,ny,nz,9); % for each of the 9 columns of .EFE files 
+Einc = zeros(nz,ny,nx,9); % for each of the 9 columns of .EFE files 
 
 textscan(fil,'%c %*[^\n]',1,'CommentStyle','#'); % ignore '**' line
 

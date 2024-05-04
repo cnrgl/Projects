@@ -1,4 +1,4 @@
-:: application purpose only, only rename e field files with specific way 
+:: application purpose only, only rename e field files in specific way 
 @echo off
 setlocal enableextensions enabledelayedexpansion 
 mkdir ".\final"

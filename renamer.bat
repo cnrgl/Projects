@@ -1,4 +1,5 @@
 :: application purpose only, only rename e field files in specific way 
+:: rename splitted even numbered files as half value of the end of its filename and move ./final folder
 @echo off
 setlocal enableextensions enabledelayedexpansion 
 mkdir ".\final"
